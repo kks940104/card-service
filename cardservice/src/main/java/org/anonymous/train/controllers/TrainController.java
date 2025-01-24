@@ -7,6 +7,7 @@ import org.anonymous.train.service.TrainService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Profile("ml")
@@ -23,7 +24,10 @@ public class TrainController {
     }
 
     @GetMapping("/predict") // 정답데이터
-    public List<Integer> predict(@RequestParam("data") List<Double> items) { // RequestParam - 쿼리스트링 까지마라
+    public List<Integer> predict(@RequestParam("data") String data) { // RequestParam - 쿼리스트링 까먹지마라
+        List<Double> items = Arrays.stream(data.split("_")).map(Double::valueOf
+        ).toList();
+        System.out.println("items : " + items);
         return predictService.predict(items);
     }
 

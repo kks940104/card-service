@@ -45,13 +45,20 @@ public class TrainService {
     // 매일 자정에 훈련 진행
     @Scheduled(cron = "0 0 0 * * *")
     public void train() {
-        ProcessBuilder builder = new ProcessBuilder(runPath, scriptPath + "partial.py");
-
         try {
             log.info("훈련 시작");
+            ProcessBuilder builder = new ProcessBuilder(runPath, scriptPath + "partial.py");
             Process process = builder.start();
             int code = process.waitFor();
             log.info("훈련 완료: {}", code);
+            // 훈련 데이터 완료 처리
+
+            QTrainData trainData = QTrainData.trainData;
+            List<TrainData> items = (List<TrainData>) repository.findAll(trainData.done.eq(false));
+
+            items.forEach(item -> item.setDone(true));
+            repository.saveAllAndFlush(items);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
