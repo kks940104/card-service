@@ -64,7 +64,7 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-def querydslDir = layout.buildDirectory.dir("generated/querydsl").get().asF11ile
+def querydslDir = layout.buildDirectory.dir("generated/querydsl").get().asFile
 
 sourceSets {
 	main.java.srcDirs += [ querydslDir ]
