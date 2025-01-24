@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.anonymous.train.entities.TrainData;
 import org.anonymous.train.service.PredictService;
 import org.anonymous.train.service.TrainService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Profile("ml")
 @RestController
 @RequiredArgsConstructor
 public class TrainController {

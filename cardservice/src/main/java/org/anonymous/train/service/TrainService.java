@@ -7,6 +7,7 @@ import org.anonymous.train.entities.TrainData;
 import org.anonymous.train.repositories.TrainDataRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.List;
 @Lazy
 @Slf4j
 @Service
+@Profile("ml")
 @RequiredArgsConstructor
 public class TrainService {
 
