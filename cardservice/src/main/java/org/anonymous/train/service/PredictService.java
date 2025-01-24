@@ -13,7 +13,7 @@ import java.util.List;
 @Lazy
 @Service
 @RequiredArgsConstructor
-public class predictService {
+public class PredictService {
 
     @Value("${python.path}")
     private String runPath;
